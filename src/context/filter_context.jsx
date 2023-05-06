@@ -21,7 +21,20 @@ const initialState = {
   filtered_products: [],
   all_products:[],
   grid_view: true,
-  sort: selectedMethod.value
+  sort: selectedMethod.value,
+  filters: {
+
+    text: "",
+    company: "all",
+    category: "all",
+    color: "all",
+    min_price: 0,
+    max_price: 0,
+    actual_price: 0,
+    shipping: false,
+
+  },
+  activeFilter: "",
 
 }
 
@@ -33,6 +46,8 @@ export const FilterProvider = ({ children }) => {
 
   const[state, dispatch] = useReducer(reducer, initialState)
 
+  // console.log(state);
+
   useEffect(() => {
 
     dispatch({type: LOAD_PRODUCTS, payload: products})
@@ -41,9 +56,11 @@ export const FilterProvider = ({ children }) => {
 
   useEffect(() => {
 
+    dispatch({type: FILTER_PRODUCTS})
     dispatch({type: SORT_PRODUCTS})
 
-  }, [products, state.sort])
+  }, [products, state.sort, state.filters])
+
 
   const setView = (gridview) => {
 
@@ -65,8 +82,25 @@ export const FilterProvider = ({ children }) => {
 
   }
 
+  const updateFilters = (e) => {
+
+    let name = e.target.name
+    let value = e.target.value
+
+    console.log(name, value);
+
+    dispatch({type: UPDATE_FILTERS, payload: {name, value }})
+
+
+  }
+
+  const clearFilters = () => {
+
+
+  }
+
   return (
-    <FilterContext.Provider value={{...state, setView, updateSort}}>
+    <FilterContext.Provider value={{...state, setView, updateSort, updateFilters, clearFilters}}>
       {children}
     </FilterContext.Provider>
   )

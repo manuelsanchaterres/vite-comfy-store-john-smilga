@@ -5,7 +5,114 @@ import { getUniqueValues, formatPrice } from '../utils/helpers'
 import { FaCheck } from 'react-icons/fa'
 
 const Filters = () => {
-  return <h4>filters</h4>
+
+  const {  
+    
+    filters: {
+
+    text,
+    company,
+    category,
+    color,
+    min_price,
+    max_price,
+    actual_price,
+    shipping,
+
+  }, updateFilters, clearFilters, all_products} = useFilterContext()
+
+  const categories = getUniqueValues(all_products, 'category')
+  const companies = getUniqueValues(all_products, 'company')
+  const colors = getUniqueValues(all_products, 'colors')
+  return (
+  
+  <Wrapper>
+
+    <div className="content">
+
+      <form onSubmit={(e) => e.preventDefault()}>
+
+        {/* search input */}
+
+        <div className="form-control">
+
+          <input type="text" name='text' placeholder='search' className='search-input' value={text} onChange={updateFilters} />
+
+        </div>
+        {/* end search input */}
+
+        {/* categories select */}
+
+        <div className="form-control">
+
+          <h5>categories</h5>
+
+          <select name='category' id='categories' className='search-input' onChange={updateFilters}>  
+
+            {categories.map((categoryitem, index) => {
+
+              return <option key={index} className={`${category === categoryitem.toLowerCase() ? 'active' : null}`}>{categoryitem}</option>
+
+            })}
+
+          </select>
+
+
+        </div>
+
+        {/* end of categories select */}
+
+        {/* companies select */}
+
+        <div className="form-control">
+
+          <h5>companies</h5>
+
+          <select name='company' id='company' className='search-input' onChange={updateFilters}>  
+
+            {companies.map((companyitem, index) => {
+
+              return <option key={index} className={`${company === companyitem.toLowerCase() ? 'active' : null}`}>{companyitem}</option>
+
+            })}
+
+          </select>
+
+
+        </div>
+
+        {/* end of companies select */}
+        
+          {/* colors buttons */}
+
+          <div className="colors">
+
+
+            {colors.map((coloritem, index) => {
+
+              console.log();
+
+              if (coloritem === "all") {
+
+                return <button key={index} name='color' value={coloritem} className={`all-btn ${color === coloritem ? 'active' : ''}`} onClick={updateFilters}>All</button>
+
+              }
+
+              return <button key={index} name='color' value={coloritem} className={`color-btn ${color === coloritem ? 'active' : ''}`} onClick={updateFilters} style={{backgroundColor: `${coloritem}`}}>{color === coloritem ? <FaCheck/> : null}</button>
+
+
+
+
+            })}
+          </div>
+
+          {/* end colors buttons */}
+
+      </form>
+
+    </div>
+
+  </Wrapper>)
 }
 
 const Wrapper = styled.section`

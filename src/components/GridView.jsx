@@ -4,7 +4,7 @@ import Product from './Product'
 import Loading from './Loading'
 
 const GridView = ({products}) => {
-  console.log(products);
+  
   return (
 
     <Wrapper>

@@ -8,7 +8,21 @@ export const formatPrice = (number) => {
 
 }
 
-export const getUniqueValues = () => {}
+export const getUniqueValues = (data, type) => {
+
+    let unique = data.map((item) => item[type])
+
+    if (type === 'colors') {
+
+        /* this flat() method is used to get an unique values array from an array of arrays */
+
+        unique = unique.flat()
+
+    }
+
+    return ['all', ...new Set(unique)]
+
+}
 
 export const featuredProductStockCheck = (product) => {
 
