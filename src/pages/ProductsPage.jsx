@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Filters, ProductList, Sort, PageHero } from '../components'
+import { Filters, ProductList, Sort, PageHero, Pagination } from '../components'
 
 const ProductsPage = () => {
   return (
@@ -24,7 +24,11 @@ const ProductsPage = () => {
           </div>
           
         </div>
+
+        {/* <Pagination /> */}
+
       </Wrapper>
+
 
     </main>
   )

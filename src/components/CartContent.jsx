@@ -5,9 +5,41 @@ import { Link } from 'react-router-dom'
 import CartColumns from './CartColumns'
 import CartItem from './CartItem'
 import CartTotals from './CartTotals'
+import {ModalClearCart } from '../components'
 
 const CartContent = () => {
-  return <h4>cart content </h4>
+  
+  const {cart} = useCartContext()
+
+  return (
+
+    <Wrapper className='section section-center'>
+
+      <CartColumns />
+      {cart.map((item) => {
+
+        return <CartItem {...item} key={item.id} />
+
+      })}
+      <hr/>
+
+      <div className="link-container">
+
+        <Link to='/products' className='link-btn'>
+
+          continue shopping
+
+        </Link>
+
+        <ModalClearCart />
+
+      </div>
+
+      <CartTotals />
+
+    </Wrapper>
+  )
+
 }
 const Wrapper = styled.section`
   .link-container {

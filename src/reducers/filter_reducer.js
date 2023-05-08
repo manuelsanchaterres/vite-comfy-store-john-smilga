@@ -8,18 +8,21 @@ import {
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
 } from '../actions'
-import { formatPrice } from '../utils/helpers';
 
 const filter_reducer = (state, action) => {
+
 
   if (action.type === LOAD_PRODUCTS) {
 
     let maxPrice = action.payload.map((product) => product.price)
     maxPrice = Math.max(...maxPrice)
 
-    return {...state, all_products: [...action.payload], filtered_products: [...action.payload], filters: {...state.filters, max_price: maxPrice, price: maxPrice }}
 
-  } else if (action.type === SET_GRIDVIEW) {
+    return {...state, all_products: [...action.payload], filtered_products: [...action.payload], filters: {...state.filters, max_price: maxPrice, actual_price: maxPrice }}
+
+  } 
+  
+  else if (action.type === SET_GRIDVIEW) {
 
     return {...state, grid_view: true}
 
@@ -65,65 +68,97 @@ const filter_reducer = (state, action) => {
   } else if (action.type === UPDATE_FILTERS) {
 
 
-    return {...state, filters: {...state.filters, [action.payload.name]: action.payload.value}, activeFilter: action.payload.name}
+    return {...state, filters: {...state.filters, [action.payload.name]: action.payload.value}}
 
   } else if (action.type === FILTER_PRODUCTS) {
 
-    let filteredProducts = [...state.all_products]
+    const {all_products} = state
+    const {text, category, company, color, actual_price, shipping} = state.filters
 
-    if (state.activeFilter === 'text') {
+    let filteredProducts = [...all_products]
 
-      if (state.filters[state.activeFilter] === "") {
+    // getMaxMinPrices(state, filteredProducts);
 
-        return {...state, filtered_products: state.all_products}
+    if (text) {
 
-      }
+      filteredProducts = filteredProducts.filter((filteredProduct) => {
 
-      filteredProducts = filteredProducts.filter((filteredProduct) => filteredProduct.name.includes(state.filters[state.activeFilter]))
 
-      return {...state, filtered_products: filteredProducts}
+        return filteredProduct.name.toLowerCase().includes(text)
 
-    } else if (state.activeFilter === 'category') {
-
-      if (state.filters[state.activeFilter] === "all") {
-
-        return {...state, filtered_products: state.filtered_products}
-
-      }
-
-      filteredProducts = filteredProducts.filter((filteredProduct) => filteredProduct.category === state.filters.category)
-
-      return {...state, filtered_products: filteredProducts}
-
-    } else if (state.activeFilter === 'company') {
-
-      if (state.filters[state.activeFilter] === "all") {
-
-        return {...state}
-
-      }
-
-      filteredProducts = filteredProducts.filter((filteredProduct) => filteredProduct.company === state.filters.company)
-
-      return {...state, filtered_products: filteredProducts}
-
-    } else if (state.activeFilter === 'color') {
-
-      if (state.filters[state.activeFilter] === "all") {
-
-        return {...state, filtered_products: state.filtered_products}
-
-      }
-
+      })
       
-      filteredProducts = filteredProducts.filter((filteredProduct) => filteredProduct.company === state.filters.company)
+    } 
+    
+    if (category !== 'all') {
 
-      return {...state, filtered_products: filteredProducts}
+      filteredProducts = filteredProducts.filter((filteredProduct) => {
+
+        return filteredProduct.category === category
+
+      })
+
+    } 
+    
+    if (company !== 'all') {
+
+
+      filteredProducts = filteredProducts.filter((filteredProduct) => {
+
+        return filteredProduct.company === company
+
+      })
+
+    } 
+    if (color !== 'all') {
+
+      filteredProducts = filteredProducts.filter((filteredProduct) => {
+
+        return filteredProduct.colors.find((coloritem) => coloritem === color)
+
+      })
+
+    } 
+    
+    // price
+
+    filteredProducts = filteredProducts.filter((filteredProduct) => {
+
+      return filteredProduct.price <=  actual_price
+
+    })
+    
+    if (shipping) {
+
+      filteredProducts = filteredProducts.filter((filteredProduct) => {
+
+        return filteredProduct.shipping === true
+
+      })  
+
+
 
     }
 
+    return {...state, filtered_products: filteredProducts}
 
+  } 
+  
+  if (action.type === CLEAR_FILTERS) {
 
+    return {...state, filters: {
+
+      ...state.filters,
+
+      text: "",
+      company: "all",
+      category: "all",
+      color: "all",
+      actual_price: state.filters.max_price,
+      shipping: false,
+  
+    },
+  }
 
   }
 

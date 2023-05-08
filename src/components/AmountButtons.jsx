@@ -2,9 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 
-const AmountButtons = ({stock}) => {
+const AmountButtons = ({stock, amount, setAmount}) => {
 
-  const [amount, setAmount] = React.useState(1)
 
   const handleAmountIncrease = () => {
 

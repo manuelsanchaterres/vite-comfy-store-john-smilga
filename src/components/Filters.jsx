@@ -24,6 +24,7 @@ const Filters = () => {
   const categories = getUniqueValues(all_products, 'category')
   const companies = getUniqueValues(all_products, 'company')
   const colors = getUniqueValues(all_products, 'colors')
+
   return (
   
   <Wrapper>
@@ -83,14 +84,17 @@ const Filters = () => {
 
         {/* end of companies select */}
         
-          {/* colors buttons */}
+        {/* colors buttons */}
+
+        <div className="form-control">
+
+          <h5>Price</h5>
 
           <div className="colors">
 
 
             {colors.map((coloritem, index) => {
 
-              console.log();
 
               if (coloritem === "all") {
 
@@ -98,17 +102,62 @@ const Filters = () => {
 
               }
 
-              return <button key={index} name='color' value={coloritem} className={`color-btn ${color === coloritem ? 'active' : ''}`} onClick={updateFilters} style={{backgroundColor: `${coloritem}`}}>{color === coloritem ? <FaCheck/> : null}</button>
+              return <button key={index} name='color' value={coloritem} className={`color-btn ${color === coloritem ? 'active' : ''}`} onClick={updateFilters} style={{backgroundColor: coloritem}}>{color === coloritem ? <FaCheck/> : null}</button>
 
 
 
 
             })}
+
           </div>
 
-          {/* end colors buttons */}
+
+        </div>
+
+
+        {/* end colors buttons */}
+        {/* price range */}
+
+        <div className="form-control">
+
+          <h5>Price</h5>
+
+
+          <p className='price'>{formatPrice(actual_price)}</p>
+
+          <input type="range" id="actual_price" value={actual_price} onChange={updateFilters} name="actual_price"
+
+          min='0' max={max_price}/>
+
+
+
+        </div>
+
+
+        {/* end price range */}
+
+        {/* free shipping checkbox */}
+
+        <div className="form-control shipping">
+
+
+          <label htmlFor="shipping">free Shipping</label>
+
+          <input type="checkbox" id="shipping" name="shipping" checked={shipping} onChange={updateFilters}/>
+
+
+        </div>
+
+
+        {/* end free shipping checkbox */}
 
       </form>
+
+      {/* clear filters button */}
+
+      <button type="button" className ="clear-btn" onClick={clearFilters}>clear filters </button>
+
+      {/* end clear filters button */}
 
     </div>
 

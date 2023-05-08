@@ -8,6 +8,7 @@ export const formatPrice = (number) => {
 
 }
 
+
 export const getUniqueValues = (data, type) => {
 
     let unique = data.map((item) => item[type])
@@ -33,5 +34,17 @@ export const featuredProductStockCheck = (product) => {
         return {...product, featured: false }
         
     }
+
+}
+
+export const getMaxMinPrices = (state, filteredProducts) => {
+
+    let maxPrice = filteredProducts.map((product) => product.price)
+    maxPrice = Math.max(...maxPrice)
+
+    let minPrice = filteredProducts.map((product) => product.price)
+    minPrice = Math.min(...minPrice)
+
+    return {...state, max_price: maxPrice, min_price: minPrice, actual_price: maxPrice }
 
 }

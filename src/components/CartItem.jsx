@@ -2,10 +2,42 @@ import React from 'react'
 import styled from 'styled-components'
 import { formatPrice } from '../utils/helpers'
 import AmountButtons from './AmountButtons'
-import { FaTrash } from 'react-icons/fa'
 import { useCartContext } from '../context/cart_context'
-const CartItem = () => {
-  return <h4>cart item</h4>
+import { ModalRemoveItem } from '.'
+const CartItem = ({id, image, name, color, price, amount}) => {
+
+
+  // console.log(image);
+  const {removeItem, toggleAmount} = useCartContext()
+
+
+  return (
+
+    <Wrapper>
+
+      <div className="title">
+      
+      <img src={image} alt={name} />
+      <h5 className="name">{name}</h5>
+      <p className="color">
+
+        color: <span style={{background: color}}></span>
+
+      </p>
+
+      <h5 className="price-small">{formatPrice(price)}</h5>
+
+      </div>
+
+      <h5 className="price">{formatPrice(price)}</h5>
+      <AmountButtons amount={amount} />
+      <h5 className="subtotal">{formatPrice(price * amount)}</h5>
+
+      {/* <button type='button' className='remove-btn' onClick={() => removeItem(id)}><FaTrash/></button> */}
+      <ModalRemoveItem product={{id, name}}/>
+      
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.article`

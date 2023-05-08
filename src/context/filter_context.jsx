@@ -34,7 +34,6 @@ const initialState = {
     shipping: false,
 
   },
-  activeFilter: "",
 
 }
 
@@ -46,7 +45,7 @@ export const FilterProvider = ({ children }) => {
 
   const[state, dispatch] = useReducer(reducer, initialState)
 
-  // console.log(state);
+  // console.log(state.filtered_products);
 
   useEffect(() => {
 
@@ -58,7 +57,6 @@ export const FilterProvider = ({ children }) => {
 
     dispatch({type: FILTER_PRODUCTS})
     dispatch({type: SORT_PRODUCTS})
-
   }, [products, state.sort, state.filters])
 
 
@@ -87,14 +85,25 @@ export const FilterProvider = ({ children }) => {
     let name = e.target.name
     let value = e.target.value
 
-    console.log(name, value);
+    if (name === 'shipping') {
+
+      value = e.target.checked
+
+    }
+
+    // console.log(name, value);
+
 
     dispatch({type: UPDATE_FILTERS, payload: {name, value }})
 
 
   }
 
-  const clearFilters = () => {
+  const clearFilters = (e) => {
+
+    e.preventDefault()
+
+    dispatch({type: CLEAR_FILTERS})
 
 
   }

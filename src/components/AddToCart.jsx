@@ -9,7 +9,10 @@ const AddToCart = ({product}) => {
 
   const {id, stock, colors} = product
 
+  const {addToCart} = useCartContext()
+
   const [mainColor, setMainColor] = useState(colors[0])
+  const [amount, setAmount] = React.useState(1)
 
   return (
 
@@ -33,8 +36,8 @@ const AddToCart = ({product}) => {
         
         <div className="btn-container">
 
-          <AmountButtons stock={stock} />
-          <Link to='/cart' className='btn'>add to cart</Link>
+          <AmountButtons stock={stock} amount={amount} setAmount = {setAmount}/>
+          <Link to='/cart' className='btn' onClick={() => addToCart(id, mainColor, amount, product)}>add to cart</Link>
 
         </div>
     </Wrapper>
