@@ -59,7 +59,7 @@ const BasicModal = ({product}) => {
                 
           <div className="link-container">
 
-            <button onClick={() => removeItem(id)} className='link-btn remove-btn'> Remove Cart</button>
+            <button onClick={() => removeItem(id)} className='link-btn remove-btn'> Remove Product</button>
 
             <button onClick={handleClose} className='link-btn back-cart-btn'> Back to Cart</button>
 
