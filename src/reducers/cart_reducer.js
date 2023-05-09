@@ -14,21 +14,24 @@ const cart_reducer = (state, action) => {
 
     const {id, color, amount, product} = action.payload
 
-    // console.log(product);
-
     /* if item already on cart array means no new cart item */
 
     if (tempCart) {
 
-      const tempItem = tempCart.find((cartItem) => cartItem.id === id + color)
+
+      const tempItem = tempCart.find((cartItem) => {
+
+        return cartItem.id  === id + color
+
+      })
 
       if (tempItem) {
 
         // update existing cart item
-
         const tempCart = state.cart.map((cartItem) => {
 
           if (cartItem.id === id + color) {
+
 
             let newAmount = cartItem.amount + amount
 
@@ -37,7 +40,6 @@ const cart_reducer = (state, action) => {
               newAmount = cartItem.max
 
             }
-
             return {...cartItem, amount: newAmount}
 
           } else {
@@ -48,6 +50,7 @@ const cart_reducer = (state, action) => {
 
 
         })
+
 
         return {...state, cart: tempCart}
 
@@ -104,6 +107,53 @@ const cart_reducer = (state, action) => {
 
     return {...state, cart: []}
   }
+
+  if (action.type === TOGGLE_CART_ITEM_AMOUNT) {
+
+    const {id, amount} = action.payload
+
+    const newTempCart = tempCart.map((cartItem) =>{
+
+      if (cartItem.id === id){
+
+        return {...cartItem, amount: amount}
+
+      }
+
+      return {...cartItem}
+
+    })
+
+
+    return {...state, cart: newTempCart}
+
+
+
+  }
+
+  if (action.type === COUNT_CART_TOTALS) {
+
+
+    const {total_amount, total_items} = state.cart.reduce((total, cartItem) => {
+
+      const {amount, price} = cartItem
+
+      total.total_items += amount
+      total.total_amount += price * amount
+      return total
+
+    }, {
+
+      total_items: 0, total_amount: 0
+
+    })
+
+    return {...state, total_items, total_amount}
+
+  }
+
+
+
 
   throw new Error(`No Matching "${action.type}" - action type`)
 }

@@ -10,14 +10,15 @@ import {ModalClearCart } from '../components'
 const CartContent = () => {
   
   const {cart} = useCartContext()
-
+  
   return (
 
     <Wrapper className='section section-center'>
 
       <CartColumns />
-      {cart.map((item) => {
 
+      {cart.map((item) => {
+        
         return <CartItem {...item} key={item.id} />
 
       })}

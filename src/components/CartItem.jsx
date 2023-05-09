@@ -1,15 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { formatPrice } from '../utils/helpers'
 import AmountButtons from './AmountButtons'
-import { useCartContext } from '../context/cart_context'
 import { ModalRemoveItem } from '.'
-const CartItem = ({id, image, name, color, price, amount}) => {
 
 
-  // console.log(image);
-  const {removeItem, toggleAmount} = useCartContext()
+const CartItem = ({id, image, name, color, price, max, amount}) => {
 
+  const [amountCartItem, setAmount] = useState(amount)
 
   return (
 
@@ -30,7 +28,8 @@ const CartItem = ({id, image, name, color, price, amount}) => {
       </div>
 
       <h5 className="price">{formatPrice(price)}</h5>
-      <AmountButtons amount={amount} />
+
+      <AmountButtons id={id} stock={max} amount={amountCartItem} setAmount={setAmount} />
       <h5 className="subtotal">{formatPrice(price * amount)}</h5>
 
       {/* <button type='button' className='remove-btn' onClick={() => removeItem(id)}><FaTrash/></button> */}

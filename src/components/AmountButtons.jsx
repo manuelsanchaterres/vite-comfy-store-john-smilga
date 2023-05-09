@@ -1,28 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { FaPlus, FaMinus } from 'react-icons/fa'
+import { useCartContext } from '../context/cart_context'
+const AmountButtons = ({id, stock, amount, setAmount}) => {
 
-const AmountButtons = ({stock, amount, setAmount}) => {
+  const {toggleAmount} = useCartContext()
 
+  let newAmount = 0
 
   const handleAmountIncrease = () => {
 
     if (amount < stock) {
 
-      setAmount(amount + 1)
+      newAmount = amount + 1
+      setAmount (newAmount)
 
     }
+
   }
 
   const handleAmountDecrease = () => {
 
     if (amount > 1) {
 
-      setAmount(amount - 1)
+      newAmount = amount - 1
+
+      setAmount(newAmount)
 
     }
+
   }
 
+  useEffect(() => {
+
+    toggleAmount({id, amount})
+
+  }, [amount])
 
 
 

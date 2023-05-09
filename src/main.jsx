@@ -6,24 +6,48 @@ import { ProductsProvider } from './context/products_context.jsx'
 import { FilterProvider } from './context/filter_context.jsx'
 import { CartProvider } from './context/cart_context.jsx'
 import { UserProvider } from './context/user_context.jsx'
-import { Auth0Context } from '@auth0/auth0-react'
+import { Auth0Provider } from "@auth0/auth0-react";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const root = ReactDOM.createRoot(document.getElementById('root'))
+
+root.render(
   <React.StrictMode>
 
-    <ProductsProvider>
+    <Auth0Provider
+
+      domain= {import.meta.env.VITE_AUTH0_DOMAIN}
+      clientId = {import.meta.env.VITE_AUTH0_CLIENT_ID}
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+      }}
       
-      <FilterProvider>
+      >
 
-        <CartProvider>
+      <UserProvider >
 
-          <App />
+        <ProductsProvider>
+          
+          <FilterProvider>
 
-        </CartProvider>
+            <CartProvider>
 
-      </FilterProvider>
 
-    </ProductsProvider>
-    
+              <App />
+
+
+            </CartProvider>
+
+          </FilterProvider>
+
+        </ProductsProvider>
+
+      </UserProvider>
+
+    </Auth0Provider>
+
   </React.StrictMode>,
 )
+
+
+
+
