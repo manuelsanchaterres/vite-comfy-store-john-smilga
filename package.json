@@ -6,11 +6,11 @@
   "scripts": {
     "start": "concurrently \"npm run node\" \"npm run dev\"",
     "node": "concurrently \"node updatePagesIndex.cjs\" \"node updateComponentsIndex.cjs\"",
-    "dev": "vite netlify",
+    "netlify": "netlify dev",
+    "dev": "vite netlify ",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "netlify": "netlify dev"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -43,7 +43,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^2.1.3",
     "stripe": "^10.16.0",
     "styled-components": "^5.3.6",
     "vite": "^4.3.2",
