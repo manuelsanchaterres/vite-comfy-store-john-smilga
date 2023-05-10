@@ -7,10 +7,9 @@
     "start": "concurrently \"npm run node\" \"npm run dev\"",
     "node": "concurrently \"node updatePagesIndex.cjs\" \"node updateComponentsIndex.cjs\"",
     "dev": "vite",
-    "build": "CI= vite-scripts build",
+    "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "netlifydev": "netlify dev"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -39,7 +38,6 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
-    "netlify-cli": "^2.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
