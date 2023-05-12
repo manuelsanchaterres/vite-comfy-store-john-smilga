@@ -40,7 +40,6 @@ export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer,initialState)
   const [checkoutButtonClicked, setCheckoutButtonClicked] = useState(false)
 
-  // console.log(checkoutButtonClicked);
 
   useEffect(() => {
 

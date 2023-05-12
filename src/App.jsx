@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import {HomePage, SingleProductPage, CartPage, CheckoutPage, ErrorPage, AboutPage, ProductsPage, PrivateRoute, AuthWrapper} from './pages'
 import AllPagesSharedLayout from './sharedlayouts/AllPagesSharedLayout'
-import { useUserContext } from './context/user_context'
 
 const App = () => {
 

@@ -28,11 +28,11 @@ const CartTotals = () => {
 
         </article>
 
-        {myUser ? (<Link to='/checkout' onClick = {() => setCheckoutButtonClicked (true)}className='btn'>
+        {myUser ? (<Link to='/checkout' onClick = {() => setCheckoutButtonClicked (true)} className='btn'>
 
           proceed to checkout
 
-          </Link>) : (<button type='button' className='btn' onClick={loginWithRedirect}>login</button>)
+          </Link>) : (<button type='button' className='btn' onClick={ loginWithRedirect}>login and go to checkout</button>)
 
         }
 

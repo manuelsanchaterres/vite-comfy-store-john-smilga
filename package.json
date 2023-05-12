@@ -2,7 +2,6 @@
   "name": "vite-comfy-store-app",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "start": "concurrently \"npm run node\" \"npm run dev\"",
     "node": "concurrently \"node updatePagesIndex.cjs\" \"node updateComponentsIndex.cjs\"",
