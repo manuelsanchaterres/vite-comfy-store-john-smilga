@@ -38,8 +38,9 @@ const CartContext = React.createContext()
 export const CartProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer,initialState)
+  const [checkoutButtonClicked, setCheckoutButtonClicked] = useState(false)
 
-  // console.log(state.total_items);
+  // console.log(checkoutButtonClicked);
 
   useEffect(() => {
 
@@ -84,7 +85,7 @@ export const CartProvider = ({ children }) => {
 
 
   return (
-    <CartContext.Provider value={{...state, addToCart, removeItem, clearCart, toggleAmount}}>{children}</CartContext.Provider>
+    <CartContext.Provider value={{...state, addToCart, removeItem, clearCart, toggleAmount, checkoutButtonClicked, setCheckoutButtonClicked}}>{children}</CartContext.Provider>
   )
 }
 // make sure use

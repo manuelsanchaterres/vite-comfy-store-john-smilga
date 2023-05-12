@@ -27,3 +27,4 @@ export { default as Sidebar } from './Sidebar.jsx';
 export { default as Sort } from './Sort.jsx';
 export { default as Stars } from './Stars.jsx';
 export { default as StripeCheckout } from './StripeCheckout.jsx';
+export { default as StripeCheckoutNewSetup } from './StripeCheckoutNewSetup.jsx';
