@@ -90,7 +90,7 @@ const CheckoutForm = () => {
         clearCart()
         navigate('/')
 
-      }, 10000);
+      }, 5000);
     }
 
   }
@@ -145,7 +145,7 @@ const CheckoutForm = () => {
 
           <h4>Thank you</h4>
           <h4>Your payment was successful!</h4>
-          <h4>Redirecting to home page shortly</h4>
+          <h4 style={{color: 'red'}}>Redirecting to home page shortly</h4>
 
         </article> : 
         
