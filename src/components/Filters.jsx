@@ -3,8 +3,11 @@ import styled from 'styled-components'
 import { useFilterContext } from '../context/filter_context'
 import { getUniqueValues, formatPrice } from '../utils/helpers'
 import { FaCheck } from 'react-icons/fa'
+import { useProductsContext } from '../context/products_context'
 
 const Filters = () => {
+
+  // const {fetchSingleProduct} = useProductsContext()
 
   const {  
     
@@ -18,6 +21,7 @@ const Filters = () => {
     max_price,
     actual_price,
     shipping,
+    stock
 
   }, updateFilters, clearFilters, all_products} = useFilterContext()
 
@@ -88,7 +92,7 @@ const Filters = () => {
 
         <div className="form-control">
 
-          <h5>Price</h5>
+          <h5>Color</h5>
 
           <div className="colors">
 
@@ -150,6 +154,21 @@ const Filters = () => {
 
 
         {/* end free shipping checkbox */}
+
+        {/* in stock checkbox */}
+
+        <div className="form-control stock">
+
+
+          <label htmlFor="stock">in stock</label>
+
+          <input type="checkbox" id="stock" name="stock" checked={stock} onChange={updateFilters}/>
+
+
+        </div>
+
+
+        {/* end in stock checkbox */}
 
       </form>
 

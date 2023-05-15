@@ -8,6 +8,9 @@ import {
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
 } from '../actions'
+import { useProductsContext } from '../context/products_context'
+import { products_url as url, single_product_url as singleurl } from '../utils/constants'
+
 
 const filter_reducer = (state, action) => {
 
@@ -73,7 +76,7 @@ const filter_reducer = (state, action) => {
   } else if (action.type === FILTER_PRODUCTS) {
 
     const {all_products} = state
-    const {text, category, company, color, actual_price, shipping} = state.filters
+    const {text, category, company, color, actual_price, shipping, stock} = state.filters
 
     let filteredProducts = [...all_products]
 
@@ -139,6 +142,24 @@ const filter_reducer = (state, action) => {
 
 
     }
+
+    // if (stock) {
+
+
+    //   filteredProducts = filteredProducts.map((filteredProduct) => {
+
+    //     const {id} = filteredProduct
+
+    //     fetchSingleProduct(`${singleurl}${id}`)
+
+    //     console.log(filteredProduct);
+
+    //   })  
+
+
+
+    // }
+
 
     return {...state, filtered_products: filteredProducts}
 

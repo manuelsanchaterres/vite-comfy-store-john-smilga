@@ -37,6 +37,7 @@ export const featuredProductStockCheck = (product) => {
 
 }
 
+
 export const getMaxMinPrices = (state, filteredProducts) => {
 
     let maxPrice = filteredProducts.map((product) => product.price)

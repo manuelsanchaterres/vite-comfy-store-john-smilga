@@ -32,6 +32,7 @@ const initialState = {
     max_price: 0,
     actual_price: 0,
     shipping: false,
+    stock: false,
 
   },
 
@@ -85,7 +86,7 @@ export const FilterProvider = ({ children }) => {
     let name = e.target.name
     let value = e.target.value
 
-    if (name === 'shipping') {
+    if (name === 'shipping' || name === 'stock') {
 
       value = e.target.checked
 
