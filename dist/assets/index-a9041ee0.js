@@ -706,7 +706,7 @@ Error generating stack: `+i.message+`
       grid-template-columns: repeat(3, 1fr);
     }
   }
-`,A1="/assets/hero-bcg-0a934294.jpeg",LS="/assets/hero-bcg-2-b058d562.jpeg",MS=()=>p.jsxs(DS,{className:"section-center",children:[p.jsxs("article",{className:"content",children:[p.jsxs("h1",{children:["design ",p.jsx("br",{}),"comfort zone"]}),p.jsx("p",{children:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, sequi eos? Repudiandae rerum doloribus nostrum accusamus odit maxime tempore provident."}),p.jsx(Le,{to:"/products",className:"btn hero-btn",children:"shop now"})]}),p.jsxs("article",{className:"img-container",children:[p.jsx("img",{src:A1,alt:"nice table",className:"main-img"}),p.jsx("img",{src:LS,alt:"person working",className:"accent-img"})]})]}),DS=te.section`
+`,A1=""+new URL("hero-bcg-0a934294.jpeg",import.meta.url).href,LS=""+new URL("hero-bcg-2-b058d562.jpeg",import.meta.url).href,MS=()=>p.jsxs(DS,{className:"section-center",children:[p.jsxs("article",{className:"content",children:[p.jsxs("h1",{children:["design ",p.jsx("br",{}),"comfort zone"]}),p.jsx("p",{children:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, sequi eos? Repudiandae rerum doloribus nostrum accusamus odit maxime tempore provident."}),p.jsx(Le,{to:"/products",className:"btn hero-btn",children:"shop now"})]}),p.jsxs("article",{className:"img-container",children:[p.jsx("img",{src:A1,alt:"nice table",className:"main-img"}),p.jsx("img",{src:LS,alt:"person working",className:"accent-img"})]})]}),DS=te.section`
   min-height: 60vh;
   display: grid;
   place-items: center;
@@ -901,7 +901,7 @@ Error generating stack: `+i.message+`
   }
 
     
-`,cy="/assets/logo-fc6768ce.svg",tC=()=>{const{openSideBar:e}=mr(),{myUser:t}=Ri();return p.jsx(nC,{children:p.jsxs("div",{className:"nav-center",children:[p.jsxs("div",{className:"nav-header",children:[p.jsx(Le,{to:"/",children:p.jsx("img",{src:cy,alt:"comfy sloth"})}),p.jsx("button",{type:"button",onClick:e,className:"nav-toggle",children:p.jsx(Gw,{})})]}),p.jsxs("ul",{className:"nav-links",children:[m1.map(n=>{const{id:r,text:o,url:i}=n;return p.jsx("li",{children:p.jsx(Le,{to:i,children:o})},r)}),t&&p.jsx("li",{children:p.jsx(Le,{to:"/checkout",children:"checkout"})})]}),p.jsx(T1,{})]})})},nC=te.nav`
+`,cy=""+new URL("logo-fc6768ce.svg",import.meta.url).href,tC=()=>{const{openSideBar:e}=mr(),{myUser:t}=Ri();return p.jsx(nC,{children:p.jsxs("div",{className:"nav-center",children:[p.jsxs("div",{className:"nav-header",children:[p.jsx(Le,{to:"/",children:p.jsx("img",{src:cy,alt:"comfy sloth"})}),p.jsx("button",{type:"button",onClick:e,className:"nav-toggle",children:p.jsx(Gw,{})})]}),p.jsxs("ul",{className:"nav-links",children:[m1.map(n=>{const{id:r,text:o,url:i}=n;return p.jsx("li",{children:p.jsx(Le,{to:i,children:o})},r)}),t&&p.jsx("li",{children:p.jsx(Le,{to:"/checkout",children:"checkout"})})]}),p.jsx(T1,{})]})})},nC=te.nav`
   height: 5rem;
   display: flex;
   align-items: center;
