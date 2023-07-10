@@ -100,6 +100,15 @@ const CheckoutForm = () => {
 
     })
 
+    console.log(payload);
+    // connection with back end to update this order on database
+
+    // const {data} = await axios.patch(
+        
+    //   '/.netlify/functions/create-payment-intent', 
+    //   JSON.stringify({cart, shipping_fee, total_amount})
+      
+    // )
 
 
     if (payload.error) {
