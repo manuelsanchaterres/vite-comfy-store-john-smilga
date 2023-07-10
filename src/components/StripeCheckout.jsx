@@ -57,6 +57,33 @@ const CheckoutForm = () => {
     setError(event.error ? event.error.message: "")
 
   }
+
+  /* function to communicate between our server and stripe payment processor */
+
+  const createPaymentIntent = async () => {
+
+    try {
+      
+      /* we destructure response "data" property from our netlify server create payment intent function */
+
+      const {data} = await axios.post(
+        
+        '/.netlify/functions/create-payment-intent', 
+        JSON.stringify({cart, shipping_fee, total_amount})
+        
+      )
+      
+      setClientSecret(data.clientSecret)
+
+        
+    } catch (error) {
+      
+      console.log(error.response);
+
+
+    }
+  }
+
   const handleSubmit = async (ev) => {
 
     ev.preventDefault()
@@ -95,44 +122,19 @@ const CheckoutForm = () => {
 
   }
 
-    /* function to communicate between our server and stripe payment processor */
-
-    const createPaymentIntent = async () => {
   
-      try {
-        
-        /* we destructure response "data" property from our netlify server create payment intent function */
+  useEffect(() => {
+    
+    if (checkoutButtonClicked) {
 
-        const {data} = await axios.post(
-          
-          '/.netlify/functions/create-payment-intent', 
-          JSON.stringify({cart, shipping_fee, total_amount})
-          
-        )
+      createPaymentIntent()
+      setCheckoutButtonClicked(false)
 
-        setClientSecret(data.clientSecret)
-  
-          
-      } catch (error) {
-        
-        console.log(error.response);
+      // eslint-disable-next-line
 
-
-      }
     }
-  
-    useEffect(() => {
-      
-      if (checkoutButtonClicked) {
 
-        createPaymentIntent()
-        setCheckoutButtonClicked(false)
-
-        // eslint-disable-next-line
-  
-      }
-  
-    }, [])
+  }, [])
   
 
   return (
